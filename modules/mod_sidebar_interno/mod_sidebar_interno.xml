@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Sidebar</name>
+    <author>Kelwin Jonas</author>
+    <version>1.0.0</version>
+    <description>Sidebar para conteúdo interno</description>
+    <files>
+        <filename>mod_sidebar_interno.xml</filename>
+        <filename module="mod_sidebar_interno">mod_sidebar_interno.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>tmpl/sidebar.css</filename>
+    </files>
+    <config>
+        <fields name="params">   
+            <fieldset name="basic">
+                <field name="menutype" type="menu" label="MOD_MENU_FIELD_MENUTYPE_LABEL" description="MOD_MENU_FIELD_MENUTYPE_DESC" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
