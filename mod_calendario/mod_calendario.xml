@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Calendario</name>
+    <author>José Fernando</author>
+    <version>1.0.0</version>
+    <description>Um calendário de eventos</description>
+    <files>
+        <filename>mod_calendario.xml</filename>
+        <filename module="mod_calendario">mod_calendario.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>tmpl/css/style.css</filename>
+        <filename>tmpl/js/angular.min.js</filename>
+        <filename>tmpl/js/moment.min.js</filename>
+        <filename>tmpl/js/index.js</filename>
+    </files>
+    <config>
+        <fields name="params">   
+            <fieldset name="basic">
+                <field name="menutype" type="category" extension="com_content" label="MOD_MENU_FIELD_MENUTYPE_LABEL" description="MOD_MENU_FIELD_MENUTYPE_DESC" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
