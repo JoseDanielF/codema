@@ -1,0 +1,93 @@
+:root {
+  --body-bg: #f0f0f0;
+  --cinza: #1f1a17;
+  --verde: #85c226;
+  --cassiopeia-color-primary: var(--verde);
+}
+
+.container-header {
+  background-image: none;
+}
+
+.bg-cinza {
+  background-color: var(--cinza);
+}
+
+.bg-cassiopeia-primary {
+  background-color: var(--cassiopeia-color-primary);
+}
+
+.text-cassiopeia-primary {
+  color: var(--cassiopeia-color-primary);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.subtema-color {
+  background-color: #f0f0f0;
+}
+
+.sidebar-left {
+  background-color: #e5e5e5;
+}
+
+.header .nav-item > a,
+.nav-item .nav-header {
+  font-weight: 700;
+}
+
+.header .nav-item > a {
+  text-transform: uppercase;
+}
+
+.nav-item .nav-header {
+  font-size: 1.5rem;
+}
+.container-header .mod-menu > li {
+  display: flex;
+  align-items: center;
+}
+
+.container-header .mod-menu > li::after {
+  display: none;
+}
+
+.container-header .container-nav {
+  padding-bottom: 0.5em;
+}
+
+.header > div:nth-child(1) {
+  flex-wrap: wrap;
+}
+
+.container-search {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: end;
+}
+
+@media (max-width: 640px) {
+  .container-search {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .border-md-right {
+    border-right: 4px rgb(255, 255, 255) solid;
+  }
+}
+
+.container-search .btn {
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-left: 0px;
+}
+
+.container-footer.footer {
+  background-color: var(--cinza);
+  background-image: none;
+}
