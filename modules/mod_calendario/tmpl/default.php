@@ -49,7 +49,7 @@ $articlesCategory = (array) $model->getItems();
         var data = [];
         <?php foreach ($articlesCategory as $key => $value) : ?>
           data.push({
-            date: new Date('<?php echo $value->created ?>'),
+            date: new Date('<?php echo Mity\ItemHelper::getFieldValue($value, 'data-da-reuniao') ?>'),
             events: [{
               name: '<?php echo $value->title ?>',
               type: 'bot',
