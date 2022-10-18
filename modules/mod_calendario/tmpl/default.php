@@ -33,7 +33,33 @@ $articlesCategory = (array) $model->getItems();
     </div>
   </div>
 </div>
+<div class="modal fade" id="modalReuniao" tabindex="-1" aria-labelledby="modalReuniaoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalReuniaoLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
+  var textos = [];
+
+  function alterarTexto(event) {
+    $('.modal .modal-header>h5')[0].innerHTML = textos[event.target.getAttribute('data-reuniao')].titulo;
+    $('.modal .modal-body>div').html('');
+    $('.modal .modal-body>div').append(textos[event.target.getAttribute('data-reuniao')].texto);
+    var myModal = new bootstrap.Modal(document.getElementById("modalReuniao"), {});
+    myModal.show();
+  }
+
   var app = angular.module('myApp', []);
   app.controller('AppCtrl', function($scope) {
     //alert("pepe")
@@ -47,25 +73,31 @@ $articlesCategory = (array) $model->getItems();
       },
       link: function(scope, element, attributes) {
         var grupos = [];
+        var data = [];
         <?php foreach ($articlesCategory as $key => $value) : ?>
+          textos['<?php echo $value->id ?>'] = {
+            texto: `<?php echo $value->introtext ?>`,
+            titulo: `<?php echo $value->title ?>`
+          };
+          <?php $reuniao = $value->id ?>
           <?php $data = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', Mity\ItemHelper::getFieldValue($value, 'data-da-reuniao'))->format('Y-m-d') ?>
           if ("<?php echo $data ?>" in grupos) {
-            grupos["<?php echo $data ?>"].push(
-              {
-                name: '<?php echo $value->title ?>',
-                type: 'bot',
-                color: 'orange'
-              }
-            );
+            grupos["<?php echo $data ?>"].push({
+              name: '<?php echo $value->title ?>',
+              type: 'bot',
+              color: 'orange',
+              reuniao: '<?php echo $reuniao ?>'
+            });
           } else {
             grupos["<?php echo $data ?>"] = [{
               name: '<?php echo $value->title ?>',
               type: 'bot',
-              color: 'orange'
+              color: 'orange',
+              reuniao: '<?php echo $reuniao ?>'
             }]
           }
         <?php endforeach; ?>
-        var data = [];
+        data = [];
         for (const [key, value] of Object.entries(grupos)) {
           data.push({
             date: new Date(key),
