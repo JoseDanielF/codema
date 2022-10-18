@@ -46,9 +46,9 @@ $articlesCategory = (array) $model->getItems();
         events: '='
       },
       link: function(scope, element, attributes) {
-        var data = [];
+        var grupos = [];
         <?php foreach ($articlesCategory as $key => $value) : ?>
-          <?php $data = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', Mity\ItemHelper::getFieldValue($value, 'data-de-reuniao'))->format('Y-m-d') ?>
+          <?php $data = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', Mity\ItemHelper::getFieldValue($value, 'data-da-reuniao'))->format('Y-m-d') ?>
           if ("<?php echo $data ?>" in grupos) {
             grupos["<?php echo $data ?>"].push(
               {
@@ -65,7 +65,7 @@ $articlesCategory = (array) $model->getItems();
             }]
           }
         <?php endforeach; ?>
-        data = [];
+        var data = [];
         for (const [key, value] of Object.entries(grupos)) {
           data.push({
             date: new Date(key),
