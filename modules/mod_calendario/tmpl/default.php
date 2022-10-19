@@ -43,21 +43,29 @@ $articlesCategory = (array) $model->getItems();
       <div class="modal-body">
         <div></div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <a id="btnLerMais" class="btn btn-primary" href="#" role="button">Ler mais</a>
       </div>
     </div>
   </div>
 </div>
 <script>
-  var textos = [];
+  var reunioes = [];
 
   function alterarTexto(event) {
-    $('.modal .modal-header>h5')[0].innerHTML = textos[event.target.getAttribute('data-reuniao')].titulo;
+    var idReuniao = event.target.getAttribute('data-reuniao');
+
+    $('.modal .modal-header>h5')[0].innerHTML = reunioes[idReuniao].titulo;
+
     $('.modal .modal-body>div').html('');
-    $('.modal .modal-body>div').append(textos[event.target.getAttribute('data-reuniao')].texto);
+    $('.modal .modal-body>div').append(reunioes[idReuniao].texto);
+
     var myModal = new bootstrap.Modal(document.getElementById("modalReuniao"), {});
     myModal.show();
+
+    var btn = document.getElementById('btnLerMais');
+    btn.setAttribute('href', reunioes[idReuniao].link);
   }
 
   var app = angular.module('myApp', []);
@@ -75,9 +83,10 @@ $articlesCategory = (array) $model->getItems();
         var grupos = [];
         var data = [];
         <?php foreach ($articlesCategory as $key => $value) : ?>
-          textos['<?php echo $value->id ?>'] = {
+          reunioes['<?php echo $value->id ?>'] = {
             texto: `<?php echo $value->introtext ?>`,
-            titulo: `<?php echo $value->title ?>`
+            titulo: `<?php echo $value->title ?>`,
+            link: `<?php echo \Joomla\CMS\Router\Route::_(\Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($value->id, $value->catid, $value->language)) ?>`
           };
           <?php $reuniao = $value->id ?>
           <?php $data = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', Mity\ItemHelper::getFieldValue($value, 'data-da-reuniao'))->format('Y-m-d') ?>
