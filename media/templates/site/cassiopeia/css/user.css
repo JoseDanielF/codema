@@ -3,6 +3,7 @@
   --cinza: #1f1a17;
   --verde: #85c226;
   --cassiopeia-color-primary: var(--verde);
+  --cassiopeia-color-hover: #6aa116;
 }
 
 .container-header {
