@@ -33,7 +33,41 @@ $articlesCategory = (array) $model->getItems();
     </div>
   </div>
 </div>
+<div class="modal fade" id="modalReuniao" tabindex="-1" aria-labelledby="modalReuniaoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalReuniaoLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div></div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <a id="btnLerMais" class="btn btn-primary" href="#" role="button">Ler mais</a>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
+  var reunioes = [];
+
+  function alterarTexto(event) {
+    var idReuniao = event.target.getAttribute('data-reuniao');
+
+    $('.modal .modal-header>h5')[0].innerHTML = reunioes[idReuniao].titulo;
+
+    $('.modal .modal-body>div').html('');
+    $('.modal .modal-body>div').append(reunioes[idReuniao].texto);
+
+    var myModal = new bootstrap.Modal(document.getElementById("modalReuniao"), {});
+    myModal.show();
+
+    var btn = document.getElementById('btnLerMais');
+    btn.setAttribute('href', reunioes[idReuniao].link);
+  }
+
   var app = angular.module('myApp', []);
   app.controller('AppCtrl', function($scope) {
     //alert("pepe")
@@ -46,17 +80,39 @@ $articlesCategory = (array) $model->getItems();
         events: '='
       },
       link: function(scope, element, attributes) {
+        var grupos = [];
         var data = [];
         <?php foreach ($articlesCategory as $key => $value) : ?>
-          data.push({
-            date: new Date('<?php echo Mity\ItemHelper::getFieldValue($value, 'data-da-reuniao') ?>'),
-            events: [{
+          reunioes['<?php echo $value->id ?>'] = {
+            texto: `<?php echo $value->introtext ?>`,
+            titulo: `<?php echo $value->title ?>`,
+            link: `<?php echo \Joomla\CMS\Router\Route::_(\Joomla\Component\Content\Site\Helper\RouteHelper::getArticleRoute($value->id, $value->catid, $value->language)) ?>`
+          };
+          <?php $reuniao = $value->id ?>
+          <?php $data = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', Mity\ItemHelper::getFieldValue($value, 'data-da-reuniao'))->format('Y-m-d') ?>
+          if ("<?php echo $data ?>" in grupos) {
+            grupos["<?php echo $data ?>"].push({
               name: '<?php echo $value->title ?>',
               type: 'bot',
-              color: 'orange'
+              color: 'orange',
+              reuniao: '<?php echo $reuniao ?>'
+            });
+          } else {
+            grupos["<?php echo $data ?>"] = [{
+              name: '<?php echo $value->title ?>',
+              type: 'bot',
+              color: 'orange',
+              reuniao: '<?php echo $reuniao ?>'
             }]
-          });
+          }
         <?php endforeach; ?>
+        data = [];
+        for (const [key, value] of Object.entries(grupos)) {
+          data.push({
+            date: new Date(key),
+            events: value
+          });
+        }
         var calendar = new Calendar('#calendar', data);
       }
     }

@@ -319,7 +319,11 @@
     events[0].events.forEach(function(ev) {
       var div = createElement('div', 'event');
       var square = createElement('div', 'event-category ' + ev.color);
-      var span = createElement('span', '', ev.name);
+      var span = createElement('span', 'btn-modal-reuniao', ev.name);
+      span.setAttribute('data-reuniao', ev.reuniao);
+      span.setAttribute('role', 'button');
+
+      span.addEventListener('click', alterarTexto);
 
       div.appendChild(square);
       div.appendChild(span);
