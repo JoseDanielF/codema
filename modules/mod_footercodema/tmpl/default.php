@@ -34,13 +34,13 @@ defined('_JEXEC') or die;
             <div class="col-md-10 d-flex justify-content-center border-md-right text-end mr-0">
                 <div>
                     <div class="col-md-12">
-                        <a target="_blank" href="https://instagram.com/ufape.oficial?utm_medium=copy_link">
+                        <a target="_blank" href="https://www.instagram.com/prefgaranhuns/?igshid=NDk5N2NlZjQ%3D">
                             <img id="logo-instagram" src="<?php echo JURI::base(); ?>images/codema/logo-codema-footer.png"
                                 alt="Logo instagram" style="width: 352px;">
                         </a>
                     </div>
                     <div class="col-md-12" style="color: rgb(211, 211, 211)">
-                        <div> Endereço: Av. Caruaru, n. 123, B. Heliópolis | 12345-567 </div>
+                        <div> Endereço: Centro Administrativo II Avenida Irga, s/n – Novo Heliópolis Garanhuns – PE | 55297-256 </div>
                         <div> CNPJ: 12.345.678/0001- 23 </div>
                     </div>
                 </div>
@@ -48,13 +48,13 @@ defined('_JEXEC') or die;
             <div class="col-md-2 d-flex align-items-around justify-content-center">
                 <div class="row w-100 justify-content-around align-items-center">
                     <div class="col-4 col-md-12 mt-2 mt-md-0 mb-2 mb-md-0 d-flex justify-content-center">
-                        <a target="_blank" href="https://www.facebook.com/ufape.comunica">
+                        <a target="_blank" href="https://www.facebook.com/PrefeituradeGaranhuns">
                             <img id="logo-facebook" src="<?php echo JURI::base(); ?>images/codema/facebook.svg"
                                 alt="Logo facebook" style="min-width: 34px;">
                         </a>
                     </div>
                     <div class="col-4 col-md-12 mt-2 mt-md-0 mb-2 mb-md-0 d-flex justify-content-center">
-                        <a target="_blank" href="https://instagram.com/ufape.oficial?utm_medium=copy_link">
+                        <a target="_blank" href="https://www.instagram.com/prefgaranhuns/?igshid=NDk5N2NlZjQ%3D">
                             <img id="logo-instagram" src="<?php echo JURI::base(); ?>images/codema/instagram.svg"
                                 alt="Logo instagram" style="min-width: 34px;">
                         </a>
