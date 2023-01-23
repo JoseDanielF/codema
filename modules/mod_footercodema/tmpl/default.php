@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
             <div class="col-md-2 d-flex align-items-around justify-content-center">
                 <div class="row w-100 justify-content-around align-items-center">
                     <div class="col-4 col-md-12 mt-2 mt-md-0 mb-2 mb-md-0 d-flex justify-content-center">
-                        <a target="_blank" href="https://www.facebook.com/PrefeituradeGaranhuns/">
+                        <a target="_blank" href="https://www.facebook.com/PrefeituradeGaranhuns">
                             <img id="logo-facebook" src="<?php echo JURI::base(); ?>images/codema/facebook.svg"
                                 alt="Logo facebook" style="min-width: 34px;">
                         </a>
